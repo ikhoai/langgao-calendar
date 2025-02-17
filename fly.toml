@@ -1,15 +1,15 @@
-# fly.toml app configuration file generated for langgao-calendar on 2025-02-17T02:57:48Z
+# fly.toml app configuration file generated for langgao-calendar on 2025-02-17T03:55:06Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = 'langgao-calendar'
-primary_region = 'lax'
+primary_region = 'sin'
 
 [build]
 
 [http_service]
-  internal_port = 80
+  internal_port = 8080
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true
