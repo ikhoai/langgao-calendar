@@ -21,7 +21,7 @@
     ></vue-cal>
   </div>  
 </template>
-
+ơ
 <script>
 import VueCal from 'vue-cal'
 import 'vue-cal/dist/vuecal.css'
@@ -107,5 +107,17 @@ export default {
   background-color: rgba(173, 216, 230, 0.5);
 }
 .vuecal {height: 90vh;}
+
+@media screen and (max-width: 768px) {
+  .vuecal__event-title {
+    font-size: 0.8em;  /* Adjust this value as needed */
+  }
+  .vuecal__event-content {
+    font-size: 0.75em;  /* Adjust this value as needed */
+  }
+  .vuecal__event .vuecal__event-time {
+    display: none;
+  }
+}
 
 </style>
