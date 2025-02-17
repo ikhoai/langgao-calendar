@@ -1,5 +1,6 @@
 <template>
   <div class="admin-panel">
+    
     <div class="event-form">
       <h2>{{ currentEvent ? 'Edit Event' : 'Create Event' }}</h2>
       <form @submit.prevent="handleSubmit">

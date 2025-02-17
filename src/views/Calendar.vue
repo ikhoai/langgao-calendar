@@ -15,7 +15,7 @@
     class="vuecal--blue-theme"
     :events="events"
     locale="vi"
-  
+    :disable-views="['years', 'year']"
     :time-from="7 * 60"
       :time-to="22 * 60"
     ></vue-cal>
