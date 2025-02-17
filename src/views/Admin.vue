@@ -23,7 +23,7 @@
           <textarea v-model="eventForm.description"></textarea>
         </div>
         
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label>Color</label>
           <div class="color-options">
             <button
@@ -38,7 +38,7 @@
               <span class="sr-only">{{ color.name }}</span>
             </button>
           </div>
-        </div>
+        </div> -->
         
         <div class="form-actions">
           <button type="submit">{{ currentEvent ? 'Update' : 'Create' }}</button>
@@ -99,7 +99,9 @@ export default {
       }
     },
     formatDate(date) {
-      return new Date(date).toLocaleString()
+      const adjustedDate = new Date(date);
+      adjustedDate.setHours(adjustedDate.getHours() - 7);
+      return adjustedDate.toLocaleString();
     },
     async fetchEvents() {
       try {

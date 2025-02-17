@@ -40,15 +40,21 @@ export default {
       
       // Debug: Log the raw response data
       console.log('Raw API response:', response.data[0])
+
+    
       
       this.events = response.data.map(event => {
-        // Debug: Log each event's color
-        console.log('Event color:', event.color)
-        
+
+         // Create dates and adjust for timezone
+         const startDate = new Date(event.start)
+        startDate.setHours(startDate.getHours() - 7)
+        const endDate = new Date(event.end)
+        endDate.setHours(endDate.getHours() - 7)        
+
         return {
           id: event._id,
-          start: new Date(event.start),
-          end: new Date(event.end),
+          start: startDate,
+          end: endDate,
           title: event.title,
           content: event.description,
           class: 'event-class',
@@ -63,7 +69,7 @@ export default {
       })
       
       // Debug: Log the transformed events
-      console.log('First transformed event:', this.events[0])
+      console.log('First transformed event:', this.events)
     } catch (error) {
       console.error(error)
     }
