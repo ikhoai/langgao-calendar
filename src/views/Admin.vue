@@ -25,7 +25,19 @@
         
         <div class="form-group">
           <label>Color</label>
-          <input type="color" v-model="eventForm.color">
+          <div class="color-options">
+            <button
+              v-for="color in predefinedColors"
+              :key="color.value"
+              type="button"
+              class="color-button"
+              :class="{ active: eventForm.color === color.value }"
+              :style="{ backgroundColor: color.value }"
+              @click="eventForm.color = color.value"
+            >
+              <span class="sr-only">{{ color.name }}</span>
+            </button>
+          </div>
         </div>
         
         <div class="form-actions">
@@ -53,14 +65,27 @@
 </template>
 
 <script>
+import { DatePicker } from 'v-calendar';
 import axios from 'axios'
 
 export default {
+  components: {
+    DatePicker
+  },
   data() {
     return {
       events: [],
       currentEvent: null,
-      eventForm: this.getDefaultForm()
+      eventForm: this.getDefaultForm(),
+      predefinedColors: [
+        { name: 'Blue', value: '#2196F3' },
+        { name: 'Green', value: '#4CAF50' },
+        { name: 'Red', value: '#F44336' },
+        { name: 'Purple', value: '#9C27B0' }
+      ],
+      masks: {
+        input: 'YYYY-MM-DD HH:mm'
+      }
     }
   },
   methods: {
@@ -128,3 +153,47 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.color-options {
+  display: flex;
+  gap: 1rem;
+}
+
+.color-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.color-button:hover {
+  transform: scale(1.1);
+}
+
+.color-button.active {
+  border-color: #333;
+  transform: scale(1.1);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.date-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+</style>
